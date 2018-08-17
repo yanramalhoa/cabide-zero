@@ -1,0 +1,520 @@
+/*MEDIUM*/
+@media only screen and (min-width:64em){
+.botoesAlinhaSalvarCancelar .col-md-offset-1{
+	margin-left: 5.333333%;
+}
+}
+
+/*SMALL*/
+@media only screen and (max-width:47em){
+  .ui-dialog{
+  	  left: 0 !important;
+  	  width: 100% !important;
+  }
+	
+}
+
+@media only screen and (min-width:75em){
+.painelLiderancaCidade{
+	min-height:340px !important;
+}	
+	
+}
+
+@media only screen and (max-width : 480px) {
+   .body .ui-panel .ui-panel-content{
+  padding: 8px 0px !important;
+  
+  }  
+}
+
+.campoResponsivoDt{
+	font-size : 11px !imporant;
+}
+
+.cardMunicipio{
+	height: auto !important;
+}	
+
+.btnPesquisa{
+	text-align: right;
+}
+
+.btnPesquisa input{
+	background-color: #fff;
+    margin-left: 0.4em;
+}
+
+.inputAlinhado{
+  margin-top: 1.2em;
+}
+
+.dtPromessas .ui-datatable-header{
+	text-align: left;
+}
+
+.h4 {
+	font-weight: bold !important;
+}
+
+.competicao {
+	font-weight: bold !important;
+	margin-top: 6px;
+	margin-left: 6px;
+}
+
+
+
+#formEleicao .ui-button-icon-only.green-btn{
+	float: right;
+    width: 48px;
+    height: 48px;
+    margin: -24px 24px 0 0;
+}
+
+.btnPromessa{
+	float: right;
+}
+
+.btnNumerado a{
+	float: right;
+}
+
+.separator{
+	background: #d8d8d8 !important;
+	border: 0.4px solid #d8d8d8 !important;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.outColumn{
+	font-weight: normal !important;
+	display: inline-block !important;
+}
+
+.btnNumerado a label{
+    position: absolute;
+    margin-top: -11px;
+    margin-left: -2px;
+    font-size: 10px;
+    color: #000000;
+    padding: 2px 4px;
+    background-color: #FFC107;
+    border-radius: 3px;
+}
+
+.btnBlock{ 
+	height: 100% !important;
+	width: 95% !important;
+	margin: 10px 0 0 2% !important;
+	float: none !important;
+	padding: 0.5em !important;
+} 
+
+.marginTop{
+	margin-top: 12px;
+}
+.labelCotacaoAposta{
+	font-weight: bold !important;
+	margin-left: 4px;
+	font-size: 16px !important;
+}
+
+div.dtSemTh div.ui-widget-header table{
+	display: none !important;
+} 
+
+.heightUserCard{
+	height: 520px !important;
+}
+
+.inputAposta {
+    font-size: 16px !important;
+    outline: none !important;
+    color: #000000!important;
+    border: 1px solid #c0c0c0!important;
+    min-width: 94% !important;
+    margin-left: 5px !important
+}
+.inputAposta{
+    background: url(../imagem/1.png)no-repeat 97% center !important;
+    display: block !important;
+    margin-top: 1% !important;
+}
+.inputAposta {
+    background: url(../imagem/2.png)no-repeat 97% center !important;
+    display: block !important;
+}
+
+input.inputAposta.ui-state-focus{
+    -moz-box-shadow: 0 0 5px #1f89ce !important;
+    -webkit-box-shadow: 0 0 5px #1f89ce !important;
+    box-shadow: 0 0 5px #1f89ce !important;
+}
+
+.botaoSelecionado{
+    background-color: #ffc108 !important;
+    color: #212121 !important;
+    font-weight: bold !important;	
+}
+
+.btnLixeira{
+	width: 30px !important;
+	height: 30px !important;
+	margin: 0 !important;
+}
+
+form#formCompeticao{
+  	padding: 0 !important;	
+}
+
+.dtPartidas .ui-datatable-scrollable-header-box{
+	margin-right: 0 !important;
+}
+
+ .layout-wrapper .topbar .topbar-menu > li.search-itemEdid i {
+   position: absolute;
+   right: 6px;
+   color: #BBDEFB; }
+   
+  .columnPersonalizado{
+  font-weight:bold;
+  text-transform: uppercase;
+  } 
+  
+  
+ .h3 { 
+    font-weight: bold !important;
+    -webkit-margin-after: 0;
+}
+.separatorBilhete{
+	border: 1px dotted #000000;
+	
+}
+
+.fonteBilhete{
+	font-size: 11px !important;
+}
+
+.inputProfile {
+    font-size: 16px !important;
+    outline: none !important;
+    color: #000000!important;
+    border: 1px solid #c0c0c0!important;
+    min-width: 94% !important;
+    margin-left: 5px !important
+}
+.inputProfile{
+    background: url(../imagem/1.png)no-repeat 97% center !important;
+    display: block !important;
+    margin-top: 1% !important;
+}
+.inputProfile {
+    background: url(../imagem/2.png)no-repeat 97% center !important;
+    display: block !important;
+}
+
+input.inputProfile.ui-state-focus{
+    -moz-box-shadow: 0 0 5px #1f89ce !important;
+    -webkit-box-shadow: 0 0 5px #1f89ce !important;
+    box-shadow: 0 0 5px #1f89ce !important;
+}
+.divPerfil{
+	background-color:#d8d8d8;"
+}
+
+.lupaInterno{
+	float: right;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none !important;
+    background: transparent !important;
+    zoom: 0.8;
+    margin-left: -37px;
+    margin-top: -5px;
+}
+
+.negrito{
+	font-weight: bold !important;
+}
+
+.linkPersonalizado{
+	display: block !important;
+	text-align: center !important;
+	font-weight: bold !important;
+}
+
+
+/*Style Página conta.xhtml*/
+.menuLateralConta{
+  	background-color: #d8d9db;
+  	min-height: 4000px;
+    min-width: 380px;
+    position: absolute;
+    top: 0;
+}
+.conteudoMenuLateral{
+	margin-top: 6em;
+}
+.menuLateralConta .ui-widget-content{
+  	background-color: inherit;	
+}
+.menuLateralConta .ui-accordion .ui-accordion-header{
+	background-color: #ccccce !important;
+}
+.menuLateralConta h3.ui-accordion-header.ui-helper-reset.ui-state-default{
+	color: #000000 !important;
+}
+
+.menuLateralConta .ui-button.secondary{
+	background-color: #343434;
+	color: #fff;
+}
+
+.menuLateralConta .ui-button-text{
+	font-size: 13px !important;
+}
+@media only screen and (min-width: 75em){
+ .menuLateralConta.col-lg-offset-1 {
+    margin-left: 3.433333%;
+  }
+}
+.menuLateralConta .ui-button.secondary .ui-icon{
+	color: #fff;
+}
+
+.formulariosConta table thead th{
+	background-color: #e8eced;
+	border: none !important;
+	color: #465b6c;
+	font-weight: normal;
+}
+
+.formulariosConta table tbody tr.ui-datatable-even{
+	background-color: #f9f9f9;
+}
+
+.formulariosConta table tbody td,
+.formulariosConta table tbody{
+	border: none !important;
+}
+.avisoConta{
+	text-align:center;
+	border: 3px #ccccce dashed;
+	padding: 20px;	
+}
+
+.groupDepositoDinheiro,
+.groupVendaCredito,
+.groupCompraCredito,
+.groupSaqueDinheiro{
+	background-color: #fbfaff;
+	padding: 0 !important;
+}
+.groupDepositoDinheiro .ui-panelgrid,
+.groupDepositoDinheiro .ui-panelgrid-cell,
+.groupVendaCredito .ui-panelgrid,
+.groupCompraCredito .ui-panelgrid,
+.groupSaqueDinheiro .ui-panelgrid,
+.groupVendaCredito .ui-panelgrid-cell,
+.groupCompraCredito .ui-panelgrid-cell,
+.groupSaqueDinheiro .ui-panelgrid-cell{
+	padding: 0 !important;
+}
+
+.groupDepositoDinheiro .ui-outputlabel,
+.groupVendaCredito .ui-outputlabel,
+.groupCompraCredito .ui-outputlabel,
+.groupSaqueDinheiro .ui-outputlabel{
+	display: block;
+}
+
+.groupDepositoDinheiro .ui-selectonemenu,
+.groupVendaCredito .ui-selectonemenu,
+.groupCompraCredito .ui-selectonemenu,
+.groupSaqueDinheiro .ui-selectonemenu{
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	height: 34px;
+}
+
+.groupDepositoDinheiro .ui-selectonemenu-label,
+.groupDepositoDinheiro .ui-selectonemenu-trigger,
+.groupVendaCredito .ui-selectonemenu-label,
+.groupCompraCredito .ui-selectonemenu-label,
+.groupSaqueDinheiro .ui-selectonemenu-label,
+.groupVendaCredito .ui-selectonemenu-trigger,
+.groupCompraCredito .ui-selectonemenu-trigger,
+.groupSaqueDinheiro .ui-selectonemenu-trigger{
+	margin-top: 7px !important;
+}
+
+.groupDepositoDinheiro .ui-inputtext,
+.groupVendaCredito .ui-inputtext,
+.groupCompraCredito .ui-inputtext,
+.groupSaqueDinheiro .ui-inputtext,
+.groupSaqueDinheiro .ui-inputfield{
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	height: 34px;
+	margin-top: 0.5em;
+}
+
+.infoDeposito{
+	background-color: #fbfaff;
+	padding: 10px !important;	
+}
+
+.saldo-menu .ui-outputlabel{
+	display: block;
+	margin-bottom: 0;
+}
+
+.saldo-menu div {
+	padding: 0;
+}
+
+.saldo-label{
+	color:#E3F2FD; 
+	font-weight: bold;
+}
+.saldo-icon{
+	color:#E3F2FD;
+	font-size: 22px;
+	padding: 2px 5px 5px 0;
+	margin-left: -9px;
+}
+
+.saldo-value{
+	color:#FFC107; 
+	font-weight: bold;
+}
+
+@media (max-width: 1024px){
+	.saldo-label{
+   		padding: 6px 10px 0px;
+   		color:#000;
+	}
+	.saldo-value{
+   		padding: 0px 10px;
+   		color:#000;
+	}
+	.saldo-icon{
+		margin-left: 9px;
+		color: #000;
+	}
+	
+}
+
+@media screen and (max-width: 40em){
+	.groupDepositoDinheiro .ui-selectonemenu,
+	.groupVendaCredito .ui-selectonemenu,
+	.groupCompraCredito .ui-selectonemenu,
+	.groupSaqueDinheiro .ui-selectonemenu{
+		min-width: 165px !important;
+	}
+	
+.boldLengend{
+	font-weight: bold !important
+}		
+.corPorStatusTransacao{
+    background-color: #ffc108 !important;
+    color: #212121 !important;
+    font-weight: bold !important;	
+}
+
+
+
+@media screen and (max-width: 40em) {
+	.heightUserCard{
+	  height: 480px !important;
+	}
+	.heightUserCardCompeticoes,
+	.heightUserCardCompeticoes .user-card-content{
+	  height: 280px !important;
+	}
+	
+	.layout-main,
+	.ui-panel-content,
+	.ui-datatable tbody tr td{
+	  padding-left: 0 !important;
+	  padding-right: 0 !important;
+	}
+	
+	.ui-datatable tbody tr td button{
+	  padding-left: 10px !important;
+	  padding-right: 10px !important;  
+	}
+	
+	.ui-row-toggler{
+	  display: block;
+	  float: right;
+      font-size: 25px !important;
+      margin-right: 10px;
+	}
+	
+	.textoStatus{
+	  display: inline-block;
+	  width: 100px;
+	  text-align: right;
+	  -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+	}
+	
+	.textoStatus span{
+	  padding: 5px;
+	  color: #fff;
+	  font-weight: bold;
+	}
+	
+	.textoStatus .statusPerdida{
+		background-color: #456176;
+	}
+	
+	.textoStatus .statusVencida{
+		background-color: #2db344;
+	}
+	
+	.textoStatusAposta{
+	  display: inline-block;
+	  text-align: right;
+	  -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+      padding-bottom: 0 !important;
+	}
+	
+	.textoStatusAposta span{
+	  padding: 5px;
+	  color: #fff;
+	  font-weight: bold;
+	}
+	.textoStatusAposta .statusDerrota{
+		background-color: #456176;
+	}
+	
+	.textoStatusAposta .statusVitoria{
+		background-color: #2db344;
+	}
+	
+	.dtbilheteMobile{
+	  display: block !important;
+	}
+	
+	.dtbilhete{
+	  display: none
+	}
+	
+	#areaPartidas{
+	  margin-top: 2em;
+	}
+	
+	.logo{
+	  display:none;
+	}
+}

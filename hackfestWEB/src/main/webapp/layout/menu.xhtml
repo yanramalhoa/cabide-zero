@@ -1,0 +1,55 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pa="http://primefaces.org/barcelona">
+    
+    <div class="layout-sidebar layout-sidebar-dark">
+        <pa:tabMenu rendered="#{administradorBean.logged}">
+            <pa:tab icon="home" title="Betan365">
+                <h:form id="menu-form">
+                    <pa:menu widgetVar="me">
+                    	 <p:menuitem id="jogos" value="Jogos" icon="&#xE912;"   url="futebol.jsf"   /> 
+                         <p:menuitem id="lancarResultados" value="Lançar Resultados" icon="&#xE877;"  url="/pages/lancarresultados.jsf" rendered="#{administradorBean.usuario.usuarioAdministrador}" />
+                         <p:menuitem  value="Bilhetes" icon="&#xE8B0;"  url="/pages/bilhetes.jsf"/>
+                          <p:menuitem id="ranking" value="Ranking Betan365" icon="grade"  url="ranking.jsf"   />
+                          <p:menuitem  value="Suporte" icon="contact_phone"  url="/pages/suporte.jsf"/>
+                    </pa:menu>
+                </h:form>
+            </pa:tab>
+            
+             <pa:tab icon="insert_chart" title="Financeiro">
+				 <h:form id="menuFinanceiro-form" >
+                    <pa:menu widgetVar="me">
+                    	<p:menuitem id="meuCaixa" value="Meu Caixa Banca" icon="&#xE8D1;"  url="/pages/meucaixa.jsf" rendered="#{administradorBean.usuario.usuarioAdministrador}"/>
+                    	<p:menuitem  value="Caixa" icon="local_atm"  url="/pages/caixa.jsf" rendered="#{administradorBean.usuario.tipoUsuario.tipo.equals('Administrador') or administradorBean.usuario.tipoUsuario.tipo.equals('Gerente')
+                    	or administradorBean.usuario.tipoUsuario.tipo.equals('Cambista')}"   />
+                    	<p:menuitem  value="Bilhetes Pendentes" icon="&#xE05E;"  url="/pages/bilhetesPendentes.jsf" rendered="#{administradorBean.usuario.usuarioAdministrador}"/>
+                    	<p:menuitem id="solicitacoes" value="Solicitações" icon="&#xE8EF;"  url="/pages/solicitacoes.jsf" rendered="#{administradorBean.usuario.usuarioAdministrador}"/>
+                    	<p:menuitem id="transacoes" value="Transações" icon="&#xE8F9;"  url="/pages/transacoes.jsf" rendered="#{administradorBean.usuario.usuarioAdministrador}"/>
+                    	<p:menuitem id="resumo" value="Resumos" icon="&#xE873;"  url="/pages/resumo.jsf" rendered="#{administradorBean.usuario.usuarioAdministrador}"/>
+                   		<p:menuitem id="adicionarCredito" value="Adicionar crédito" icon="&#xE0DF;"   url="deposito.jsf"   /> 
+                        <p:menuitem id="saque" value="Saque" icon="&#xE263;"   url="saque.jsf"   />  
+                        <p:menuitem id="extrato" value="Extrato" icon="&#xE02F;"   url="extrato.jsf"   /> 
+                        <p:menuitem  value="Lançamentos Manuais" icon="launch"   url="lancamentosmanuais.jsf" rendered="#{administradorBean.usuario.tipoUsuario.tipo.equals('Administrador') or administradorBean.usuario.tipoUsuario.tipo.equals('Gerente')}"  /> 
+                       
+                    </pa:menu>
+                </h:form>
+            </pa:tab>
+            
+             <pa:tab icon="people" title="Usuários" rendered="#{administradorBean.usuario.usuarioAdministrador}">
+        	 <h:form id="menuUsuario-form">
+                    <pa:menu widgetVar="me">
+                    	<p:menuitem id="usuario" value="Usuários" icon="&#xE853;"  url="/pages/usuario.jsf" rendered="#{administradorBean.usuario.usuarioAdministrador}"/>
+                    </pa:menu>
+                </h:form>
+            </pa:tab>
+			
+            
+            
+        </pa:tabMenu>        
+    </div>
+    
+</ui:composition>

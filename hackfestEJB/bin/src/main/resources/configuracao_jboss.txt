@@ -1,0 +1,30 @@
+##### DATASOURCE JBOSS
+# Mamatinha
+...
+
+<datasource jta="true" jndi-name="java:/commonserviceDS" pool-name="CommonServicePool" enabled="true" use-java-context="true" use-ccm="true">
+    <connection-url>jdbc:postgresql://10.96.0.34:5432/umti_common_homolog</connection-url>
+    <driver-class>org.postgresql.Driver</driver-class>
+    <driver>postgresql</driver>
+    <security>
+        <user-name>umti_desenv</user-name>
+        <password>Db4umt1</password>
+    </security>
+</datasource>
+<datasource jta="true" jndi-name="java:/rhDS" pool-name="RHPool" enabled="true" use-java-context="true" use-ccm="true">
+    <connection-url>jdbc:postgresql://10.96.0.34:5432/umti_rh</connection-url>
+    <driver-class>org.postgresql.Driver</driver-class>
+    <driver>postgresql</driver>
+    <security>
+        <user-name>umti_desenv</user-name>
+        <password>Db4umt1</password>
+    </security>
+</datasource>
+<drivers>
+    <driver name="postgresql" module="org.postgresql">
+        <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+    </driver>
+</drivers>
+
+...
+

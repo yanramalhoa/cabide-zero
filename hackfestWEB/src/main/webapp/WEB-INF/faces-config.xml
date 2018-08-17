@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+
+    <!-- RESOURCE BUNDLE MESSAGE -->
+    <application>
+    	<resource-bundle>
+    		<base-name>message</base-name>
+    		<var>msg</var>
+    	</resource-bundle>
+    	<locale-config>
+    		<default-locale>pt_BR</default-locale>
+    		<supported-locale>pt_BR</supported-locale>
+    	</locale-config>
+    </application>
+
+    <!-- HANDLERS -->
+	<factory>
+		<exception-handler-factory>
+			br.com.hackfest.controller.handler.CabideExceptionHandlerFactory
+		</exception-handler-factory>
+	</factory>
+	
+    <converter>
+		<converter-id>entityConverter</converter-id>
+		<converter-class>br.com.hackfest.controller.converter.EntityConverter</converter-class>
+	</converter>
+	
+    <converter>
+		<converter-id>entityListConverter</converter-id>
+		<converter-class>br.com.hackfest.controller.converter.EntityListConverter</converter-class>
+	</converter>
+	
+	<validator>
+		<validator-id>cpfValidator</validator-id>
+		<validator-class>br.com.hackfest.controller.validator.CpfValidator</validator-class>
+	</validator>
+	
+	<validator>
+		<validator-id>validadorEmail</validator-id>
+		<validator-class>br.com.hackfest.controller.validator.EmailValidator</validator-class>
+	</validator>
+	
+	
+</faces-config>
