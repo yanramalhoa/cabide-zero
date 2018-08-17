@@ -23,7 +23,7 @@ import br.com.hackfest.model.enums.Estado;
 @Table(name = "municipio")
 @SequenceGenerator(name = "seqMunicipio", sequenceName = "seq_Municipio", allocationSize = 1)
 @NamedQueries({
-	@NamedQuery(name = "Cidade.unicidade", query = "SELECT COUNT(c) FROM Municipio c WHERE c.nome =:nome AND c.estado =:estado")
+	@NamedQuery(name = "Municipio.unicidade", query = "SELECT COUNT(c) FROM Municipio c WHERE c.nome =:nome AND c.estado =:estado")
 })
 public class Municipio extends EntidadeGenerica {
 	
@@ -76,17 +76,16 @@ public class Municipio extends EntidadeGenerica {
     
     @Column(name="LONGITUDE")
     private String longitude;
-
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName="ID_ZONA", name="ID_ZONA")
-    private Zona zona;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(referencedColumnName="ID_ZONA", name="ID_ZONA")
+//    private Zona zona;
 	
     public Municipio() {
 		// TODO Auto-generated constructor stub
-    	if(zona == null) {
-    		zona = new Zona();
-    	}
+//    	if(zona == null) {
+//    		zona = new Zona();
+//    	}
 	}
 	
 
@@ -187,13 +186,13 @@ public class Municipio extends EntidadeGenerica {
 		this.pesoTotal = pesoTotal;
 	}
 
-	public Zona getZona() {
-		return zona;
-	}
-
-	public void setZona(Zona zona) {
-		this.zona = zona;
-	}
+//	public Zona getZona() {
+//		return zona;
+//	}
+//
+//	public void setZona(Zona zona) {
+//		this.zona = zona;
+//	}
 
 	public int hashCode() {
 		final int prime = 31;
