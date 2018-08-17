@@ -1,5 +1,6 @@
 package br.com.hackfest.model.entities;
 
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -11,6 +12,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import br.com.hackfest.controller.annotation.Status;
+
+
 
 @Embeddable
 @MappedSuperclass
@@ -33,13 +36,10 @@ public abstract class EntidadeGenerica implements Serializable, Cloneable {
 	@Column(name = "DATA_AUD", nullable=true)
 	private Date dataAUD;
 	
-
-	
 	@Column(name = "CODIGO_ANTERIOR", length=255, nullable=true)
 	private String codigoAnterior;
 	
-	@Transient
-	private Usuario usuarioSessao;
+	
 	
 	public EntidadeGenerica() {
 	}
@@ -113,18 +113,6 @@ public abstract class EntidadeGenerica implements Serializable, Cloneable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-
-
-	public Usuario getUsuarioSessao() {
-		return usuarioSessao;
-	}
-
-
-	public void setUsuarioSessao(Usuario usuarioSessao) {
-		this.usuarioSessao = usuarioSessao;
-	}
-
-
 
 
 	

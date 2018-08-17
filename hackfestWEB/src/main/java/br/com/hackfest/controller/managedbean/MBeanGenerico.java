@@ -131,7 +131,7 @@ public abstract class MBeanGenerico<T> implements Serializable {
 			((EntidadeGenerica)this.objeto).setUsuarioAUD(this.getAdministradorBean().getUsuario());
 			((EntidadeGenerica)this.objeto).setDataAUD(new Date(System.currentTimeMillis()));
 			((EntidadeGenerica)this.objeto).setAtivo(true);
-			((EntidadeGenerica)this.objeto).setUsuarioSessao(this.getAdministradorBean().getUsuario());
+//			((EntidadeGenerica)this.objeto).setUsuarioSessao(this.getAdministradorBean().getUsuario());
 			//se a operação for 'alteração'
 			if (id != null && !id.equals("")){
 				//se o objeto sofreu alguma alteração - salvar
