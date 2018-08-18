@@ -21,6 +21,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 import br.com.hackfest.controller.annotation.ListDetail;
 import br.com.hackfest.controller.annotation.SortId;
@@ -30,6 +32,7 @@ import br.com.hackfest.model.entities.EntidadeGenerica;
 import br.com.hackfest.model.interfaces.business.GenericoBusiness;
 import br.com.hackfest.model.interfaces.repository.GenericoRepository;
 import br.com.hackfest.model.util.StringUtil;
+import br.com.hackfest.pojo.ChartPojo;
 import br.com.hackfest.view.Erro;
 import br.com.hackfest.view.Mensagem;
 import br.com.hackfest.view.datamodel.LazyDataModelPaginado;
@@ -102,7 +105,6 @@ public abstract class MBeanGenerico<T> implements Serializable {
 	public void initMaster() {
 		//
 	}
-	
 	
 	public void addBeanDetalhe(MBeanGenerico beanGenerico){
 		if(!this.beansGenericos.contains(beanGenerico)){
