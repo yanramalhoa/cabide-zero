@@ -29,7 +29,7 @@ public class Filiado extends EntidadeGenerica {
 
 	@Id
 	@Column(name = "ID_FILIADO")
-	@GeneratedValue(generator = "seqUsuario", strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "seqFiliado", strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name = "DATA_EXTRACAO")

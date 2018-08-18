@@ -136,7 +136,7 @@ public class PrincipalBean implements Serializable {
 		ultimaEscolha = tipoBusca;
 	}
 
-	public boolean tipoBuscarPartido() {
+	public boolean isTipoBuscarPartido() {
 		return tipoBuscarPartido;
 	}
 
@@ -151,5 +151,4 @@ public class PrincipalBean implements Serializable {
 	public void setTipoBuscarServidor(boolean tipoBuscarServidor) {
 		this.tipoBuscarServidor = tipoBuscarServidor;
 	}
-	
 }

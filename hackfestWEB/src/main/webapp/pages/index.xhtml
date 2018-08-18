@@ -7,7 +7,7 @@
 	<ui:define name="content">
 		<section class="graficosPartidos">
 			<h1>Empregos de servidores públicos<br/> ligados aos seguintes partidos</h1>
-			<p:chart type="bar" model="#{partidoBean.chart.barChartModel}" style="height:380px" responsive="true"/>
+			<p:chart type="bar" model="#{principalBean.chart.barChartModel}" style="height:380px" responsive="true"/>
 		</section>
 		
 		<section class="objetivo">
@@ -24,15 +24,15 @@
 				<h:form id="form">
 					<div class="row">
 						<div class="filtros col-md-12">
-							<p:commandButton id="tipoBuscarPartido" value="Partido" styleClass="btnBuscar #{partidoBean.tipoBuscarPartido ? 'ativo' : ''}"  style="border-bottom-right-radius: 0; border-top-right-radius: 0;">
-								<p:ajax event="click" update="tipoBuscarServidor, tipoBuscarPartido, form" listener="#{partidoBean.alterarBusca(1)}" />
+							<p:commandButton id="tipoBuscarPartido" value="Partido" styleClass="btnBuscar #{principalBean.tipoBuscarPartido ? 'ativo' : ''}"  style="border-bottom-right-radius: 0; border-top-right-radius: 0;">
+								<p:ajax event="click" update="tipoBuscarServidor, tipoBuscarPartido, form" listener="#{principalBean.alterarBusca(1)}" />
 							</p:commandButton>
-							<p:commandButton id="tipoBuscarServidor" value="Servidor" styleClass="btnBuscar #{partidoBean.tipoBuscarServidor ? 'ativo' : ''}" style="border-left: none; border-bottom-left-radius: 0; border-top-left-radius: 0;">
-								<p:ajax event="click" update="tipoBuscarPartido, tipoBuscarServidor, form" listener="#{partidoBean.alterarBusca(2)}" />
+							<p:commandButton id="tipoBuscarServidor" value="Servidor" styleClass="btnBuscar #{principalBean.tipoBuscarServidor ? 'ativo' : ''}" style="border-left: none; border-bottom-left-radius: 0; border-top-left-radius: 0;">
+								<p:ajax event="click" update="tipoBuscarPartido, tipoBuscarServidor, form" listener="#{principalBean.alterarBusca(2)}" />
 							</p:commandButton>
 						</div>
 						<div class="col-md-12" style="padding-top: 25px; padding-bottom: 25px;">
-							<h:panelGroup id="selectPartidos" rendered="#{partidoBean.tipoBuscarPartido}">
+							<h:panelGroup id="selectPartidos" rendered="#{principalBean.tipoBuscarPartido}">
 								<p:selectOneMenu id="listaPartidos" styleClass="mdc-select__native-control partidos col-md-11">
 						            <f:selectItem itemLabel="Partidos" itemValue="" />
 						            <f:selectItem itemLabel="PT" itemValue="Xbox One" />
