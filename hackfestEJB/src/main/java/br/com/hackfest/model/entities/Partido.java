@@ -10,6 +10,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -45,6 +46,15 @@ public class Partido extends EntidadeGenerica {
     
     @Column(name="NUMERO")
     private String numero;
+    
+    @Transient
+	private Integer quantFiliados;
+    
+    @Transient
+  	private Integer quantServidoresEmpregados;
+    
+    @Transient
+  	private Integer quantiServidoresDoisEmpregos;
     
 	
 	@Override
@@ -95,6 +105,22 @@ public class Partido extends EntidadeGenerica {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public Integer getQuantServidoresEmpregados() {
+		return quantServidoresEmpregados;
+	}
+
+	public void setQuantServidoresEmpregados(Integer quantServidoresEmpregados) {
+		this.quantServidoresEmpregados = quantServidoresEmpregados;
+	}
+
+	public Integer getQuantiServidoresDoisEmpregos() {
+		return quantiServidoresDoisEmpregos;
+	}
+
+	public void setQuantiServidoresDoisEmpregos(Integer quantiServidoresDoisEmpregos) {
+		this.quantiServidoresDoisEmpregos = quantiServidoresDoisEmpregos;
 	}
     
 

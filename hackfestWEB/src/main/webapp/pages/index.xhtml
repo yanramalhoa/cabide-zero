@@ -14,7 +14,7 @@
 			<div class="introducao">
 				<h1><img alt="Logo" src="../imagem/cabide-zero.png" class="img-responsive" width="250px"/></h1>
 				<hr/>
-				<p>A aplicação tem como objetivo filtrar e apresentar dados e inforomações extraidos do TCE/PB e TSE. Sobre as pessoas que possuem vínculo empregatício(Possível Cabide)
+				<p>O projeto tem como objetivo filtrar e apresentar dados e inforomações extraidos do TCE/PB e TSE. Sobre as pessoas que possuem vínculo empregatício(Possível Cabide)
 				em instituições públicas.</p>
 			</div>
 		</section>
@@ -33,15 +33,23 @@
 						</div>
 						<div class="col-md-12" style="padding-top: 25px; padding-bottom: 25px;">
 							<h:panelGroup id="selectPartidos" rendered="#{principalBean.tipoBuscarPartido}">
-								<p:selectOneMenu id="listaPartidos" styleClass="mdc-select__native-control partidos col-md-11">
-						            <f:selectItem itemLabel="Partidos" itemValue="" />
-						            <f:selectItem itemLabel="PT" itemValue="Xbox One" />
-						            <f:selectItem itemLabel="PC do B" itemValue="PS4" />
-						            <f:selectItem itemLabel="PSOL" itemValue="Wii U" />
+								<p:selectOneMenu id="listaPartidos" styleClass="mdc-select__native-control partidos col-md-11"
+											value="#{principalBean.partido}"
+											filter="true">
+											<f:selectItem itemLabel="Selecione..." itemValue="#{null}" />
+											<f:selectItems value="#{principalBean.listPartidos()}"
+												var="c" itemLabel="#{c.sigla}" />
 						        </p:selectOneMenu>
 						        
-						        <p:commandButton icon="ui-icon-search" styleClass="btnLupa"/>
+						        <p:commandLink styleClass="btnLupa"><i class="material-icons">search</i></p:commandLink>
 					        </h:panelGroup>
+					        
+					        <h:panelGroup id="inputServidor" rendered="#{principalBean.tipoBuscarServidor}">
+								<p:inputText placeholder="CPF" styleClass="col-md-11"/>
+						        
+						        <p:commandLink styleClass="btnLupa"><i class="material-icons">search</i></p:commandLink>
+					        </h:panelGroup>
+					        
 						</div>
 						<div class="col-md-12 card">
 							<div class="col-md-12" style="padding-top: 0;">
@@ -66,6 +74,33 @@
 						</div>
 					</div>
 				</h:form>
+			</div>
+		</section>
+		
+		<section class="contato">
+			<div class="rodape container">
+				<div class="col-md-12">
+					<h2>CONTATO</h2>
+					<hr/>
+					<p>Fale conosco em caso de dúvida, sugestão ou elogio.</p>
+					<br/>
+				</div>
+				<div class="col-md-4 col-xs-12">
+					<hr/>
+					<h3>Titulo 1</h3>
+					<p>informação 1</p>
+				</div>
+				<div class="col-md-4 col-xs-12">
+					<hr/>
+					<h3>Titulo 2</h3>
+					<p>informação 2</p>
+				</div>
+				<div class="col-md-4 col-xs-12">
+					<hr/>
+					<h3>Titulo 3</h3>
+					<p>informação 3</p>
+				</div>
+				
 			</div>
 		</section>
 	</ui:define>

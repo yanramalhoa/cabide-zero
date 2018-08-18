@@ -34,7 +34,7 @@
   </error-page>
    <error-page>  
     <error-code>404</error-code>  
-    <location>/pages/empty.xhtml</location>  
+    <location>/pages/index.xhtml</location>  
   </error-page>
   
   <servlet>
