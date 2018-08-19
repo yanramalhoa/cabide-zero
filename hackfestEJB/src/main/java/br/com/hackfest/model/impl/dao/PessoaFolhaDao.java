@@ -184,7 +184,7 @@ public class PessoaFolhaDao extends GenericoDao<PessoaFolha> implements PessoaFo
 		"	        and c.nome not like '%DENTIST%' " + 
 		"	        and c.nome not like '%FARMAC%' " + 
 		"	    ) " +
-		"Group By p.id_pessoa, p.cpf, p.nome as pessoa" +
+		"Group By p.id_pessoa, p.cpf, p.nome" +
 		"Order By p.nome " + 
 		" ";
 
