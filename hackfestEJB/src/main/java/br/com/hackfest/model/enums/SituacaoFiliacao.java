@@ -6,7 +6,8 @@ public enum SituacaoFiliacao {
 
     REGULAR("Regular"),
     DESFILIADO("Desfiliado"),
-    CANCELADO("Cancelado");
+    CANCELADO("Cancelado"),
+    SUB_JUDICE("Sub-Judice");
 
     private String descricao;
 

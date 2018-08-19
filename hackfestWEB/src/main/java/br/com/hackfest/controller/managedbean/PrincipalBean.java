@@ -21,6 +21,7 @@ import br.com.hackfest.model.entities.Pessoa;
 import br.com.hackfest.model.entities.Votacao;
 import br.com.hackfest.model.interfaces.business.PartidoBusiness;
 import br.com.hackfest.model.interfaces.business.PessoaBusiness;
+import br.com.hackfest.model.interfaces.business.PessoaFolhaBusiness;
 import br.com.hackfest.model.interfaces.business.VotacaoBusiness;
 import br.com.hackfest.pojo.ChartPojo;
 
@@ -41,6 +42,9 @@ public class PrincipalBean implements Serializable {
 	
 	@EJB
 	private VotacaoBusiness votacaoBusiness;
+	
+	@EJB
+	private PessoaFolhaBusiness pessoaFolhaBusiness;
 	
 	
 	private ChartPojo chart;
@@ -87,7 +91,7 @@ public class PrincipalBean implements Serializable {
 	}
 
 	@PostConstruct
-	public void init() {
+	public void init() throws CabideException {
 		chart                = new ChartPojo();
 		
 		if(listaPartidos == null) {
@@ -127,6 +131,12 @@ public class PrincipalBean implements Serializable {
         
         pieChart.getPieChartModel().set("Financeiro", 50000);
         pieChart.getPieChartModel().set("Filiados", 10000);
+        
+        
+        
+        pessoaFolhaBusiness.listaPessoasComVinculo(1, 2017);
+        
+        
 	}
 	
 	public void alterarBusca(Integer tipoBusca) {
