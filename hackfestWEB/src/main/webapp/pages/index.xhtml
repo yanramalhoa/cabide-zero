@@ -11,11 +11,19 @@
 					<h1 class="col-md-12">Empregos de servidores públicos<br/> ligados aos seguintes partidos</h1>
 					<div class="col-md-12" style="padding-top: 15px; padding-bottom: 15px;">
 						<div class="filtrosGrafico">
-					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-4"
-										value="#{principalBean.partido}"
-										filter="true" style="margin-left:30.33333333%">
-										<f:selectItems value="#{principalBean.listPartidos()}"
-											var="c" itemLabel="#{c.sigla}" />
+					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-4" style="margin-left:30.33333333%">
+										<f:selectItem itemValue="1" itemLabel="Janeiro" />
+										<f:selectItem itemValue="2" itemLabel="Fevereiro" />
+										<f:selectItem itemValue="3" itemLabel="Março" />
+										<f:selectItem itemValue="4" itemLabel="Abril" />
+										<f:selectItem itemValue="5" itemLabel="Maio" />
+										<f:selectItem itemValue="6" itemLabel="Junho" />
+										<f:selectItem itemValue="7" itemLabel="Julho" />
+										<f:selectItem itemValue="8" itemLabel="Agosto" />
+										<f:selectItem itemValue="9" itemLabel="Setembro" />
+										<f:selectItem itemValue="10" itemLabel="Outubro" />
+										<f:selectItem itemValue="11" itemLabel="Novembro" />
+										<f:selectItem itemValue="12" itemLabel="Dezembro" />
 					        </p:selectOneMenu>
 					        
 					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-1"
@@ -72,11 +80,19 @@
 					        <h:panelGroup id="inputServidor" rendered="#{principalBean.tipoBuscarServidor}">
 								<p:inputText placeholder="CPF" styleClass="col-md-7"/>
 								
-								<p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
-											value="#{principalBean.partido}"
-											filter="true" style="margin-left: 10px; ">
-											<f:selectItems value="#{principalBean.listPartidos()}"
-												var="c" itemLabel="#{c.sigla}" />
+								<p:selectOneMenu styleClass="mdc-select__native-control col-md-2" style="margin-left: 10px;">
+											<f:selectItem itemValue="1" itemLabel="Janeiro" />
+											<f:selectItem itemValue="2" itemLabel="Fevereiro" />
+											<f:selectItem itemValue="3" itemLabel="Março" />
+											<f:selectItem itemValue="4" itemLabel="Abril" />
+											<f:selectItem itemValue="5" itemLabel="Maio" />
+											<f:selectItem itemValue="6" itemLabel="Junho" />
+											<f:selectItem itemValue="7" itemLabel="Julho" />
+											<f:selectItem itemValue="8" itemLabel="Agosto" />
+											<f:selectItem itemValue="9" itemLabel="Setembro" />
+											<f:selectItem itemValue="10" itemLabel="Outubro" />
+											<f:selectItem itemValue="11" itemLabel="Novembro" />
+											<f:selectItem itemValue="12" itemLabel="Dezembro" />
 						        </p:selectOneMenu>
 						        
 						        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
@@ -100,7 +116,7 @@
 								<div class="col-md-1"><i class="material-icons">people</i></div>
 								<div class="col-md-2" style="padding-top: 10px;">Filiados</div>
 								<div class="col-md-2" style="padding-top: 10px;">10.000</div>
-								<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBar" widgetVar="pbClient"/></div>
+								<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBar" widgetVar="pbClient" value="100"/></div>
 							</div>
 							<div class="col-md-12">
 								<div class="col-md-1"><i class="material-icons">attach_money</i></div>
