@@ -32,16 +32,18 @@
 							</p:commandButton>
 						</div>
 						<div class="col-md-12" style="padding-top: 25px; padding-bottom: 25px;">
-							<h:panelGroup id="selectPartidos" rendered="#{principalBean.tipoBuscarPartido}">
-								<p:selectOneMenu id="listaPartidos" styleClass="mdc-select__native-control partidos col-md-11">
-						            <f:selectItem itemLabel="Partidos" itemValue="" />
-						            <f:selectItem itemLabel="PT" itemValue="Xbox One" />
-						            <f:selectItem itemLabel="PC do B" itemValue="PS4" />
-						            <f:selectItem itemLabel="PSOL" itemValue="Wii U" />
-						        </p:selectOneMenu>
+								<h:panelGroup id="selectPartidos" rendered="#{principalBean.tipoBuscarPartido}">
+										<p:selectOneMenu id="partido" 
+											styleClass="selectmenu" converter="entityConverter"
+											value="#{principalBean.partido}">
+											<f:selectItem itemLabel="Selecione..." itemValue="#{null}" />
+											<f:selectItems value="#{principalBean.listPartidos()}"
+												var="c" itemLabel="#{c.sigla}" />
+										</p:selectOneMenu>
 						        
 						        <p:commandButton icon="ui-icon-search" styleClass="btnLupa"/>
 					        </h:panelGroup>
+						        
 						</div>
 						<div class="col-md-12 card">
 							<div class="col-md-12" style="padding-top: 0;">

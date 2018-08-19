@@ -1,6 +1,8 @@
 package br.com.hackfest.model.entities;
 
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,6 +57,9 @@ public class Partido extends EntidadeGenerica {
     
     @Transient
   	private Integer quantiServidoresDoisEmpregos;
+    
+    @Transient
+  	private BigDecimal financeiro;
     
 	
 	@Override
@@ -121,6 +126,22 @@ public class Partido extends EntidadeGenerica {
 
 	public void setQuantiServidoresDoisEmpregos(Integer quantiServidoresDoisEmpregos) {
 		this.quantiServidoresDoisEmpregos = quantiServidoresDoisEmpregos;
+	}
+
+	public Integer getQuantFiliados() {
+		return quantFiliados;
+	}
+
+	public void setQuantFiliados(Integer quantFiliados) {
+		this.quantFiliados = quantFiliados;
+	}
+
+	public BigDecimal getFinanceiro() {
+		return financeiro;
+	}
+
+	public void setFinanceiro(BigDecimal financeiro) {
+		this.financeiro = financeiro;
 	}
     
 

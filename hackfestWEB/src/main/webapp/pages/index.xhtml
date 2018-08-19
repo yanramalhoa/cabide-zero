@@ -11,7 +11,10 @@
 					<h1 class="col-md-12">Empregos de servidores públicos<br/> ligados aos seguintes partidos</h1>
 					<div class="col-md-12" style="padding-top: 15px; padding-bottom: 15px;">
 						<div class="filtrosGrafico">
-					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-4" style="margin-left:30.33333333%">
+					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-4" 
+					        value="#{principalBean.mes}"
+					        style="margin-left:30.33333333%">
+										
 										<f:selectItem itemValue="1" itemLabel="Janeiro" />
 										<f:selectItem itemValue="2" itemLabel="Fevereiro" />
 										<f:selectItem itemValue="3" itemLabel="Março" />
@@ -27,8 +30,8 @@
 					        </p:selectOneMenu>
 					        
 					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-1"
-										value="">
-										<f:selectItem itemLabel="2017" itemValue="#{null}" />
+										value="#{principalBean.ano}">
+										<f:selectItem itemLabel="2017" itemValue="2017" />
 					        </p:selectOneMenu>
 				        </div>
 					</div>
@@ -51,6 +54,8 @@
 		<section id="busca" class="buscarInfo">
 			<div class="buscar container">
 				<h:form id="form">
+					<p:messages  autoUpdate="true" />
+				
 					<div class="row">
 						<div class="col-md-12" style="color: #000">
 							<h1>Filtro</h1>
@@ -67,20 +72,28 @@
 						<div class="col-md-12" style="padding-top: 25px; padding-bottom: 25px;">
 							<h:panelGroup id="selectPartidos" rendered="#{principalBean.tipoBuscarPartido}">
 								<p:selectOneMenu id="listaPartidos" styleClass="mdc-select__native-control partidos col-md-11"
-											value="#{principalBean.partido}"
-											filter="true">
+											value="#{principalBean.partido}" converter="entityConverter" 
+											>
 											<f:selectItem itemLabel="Selecione..." itemValue="#{null}" />
 											<f:selectItems value="#{principalBean.listPartidos()}"
 												var="c" itemLabel="#{c.sigla}" />
 						        </p:selectOneMenu>
 						        
-						        <p:commandLink styleClass="btnLupa"><i class="material-icons">search</i></p:commandLink>
+						        <p:commandLink styleClass="btnLupa"  ajax="true" update="groupInfo" 
+						        actionListener="#{principalBean.buscarPartido()}"><i class="material-icons">search</i>
+						        </p:commandLink>
 					        </h:panelGroup>
 					        
 					        <h:panelGroup id="inputServidor" rendered="#{principalBean.tipoBuscarServidor}">
-								<p:inputText placeholder="CPF" styleClass="col-md-7"/>
+								<p:inputText placeholder="CPF" value="#{principalBean.servidor.cpf}"  style="font-size:23px"
+								styleClass="col-md-7" onkeyup="mascara(this, cpfCnpj)" maxlength="14" >
+									<f:validator validatorId="cpfValidator" />
+								</p:inputText>
 								
-								<p:selectOneMenu styleClass="mdc-select__native-control col-md-2" style="margin-left: 10px;">
+								
+								<p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
+								 value="#{principalBean.mes}" 
+								 style="margin-left: 10px;">
 											<f:selectItem itemValue="1" itemLabel="Janeiro" />
 											<f:selectItem itemValue="2" itemLabel="Fevereiro" />
 											<f:selectItem itemValue="3" itemLabel="Março" />
@@ -96,73 +109,94 @@
 						        </p:selectOneMenu>
 						        
 						        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
-											value="" style="margin-left: 10px;">
-											<f:selectItem itemLabel="2017" itemValue="#{null}" />
+										 style="margin-left: 10px;"  value="#{principalBean.ano}">
+											<f:selectItem itemLabel="2017" itemValue="2017" />
 						        </p:selectOneMenu>
 						        
-						        <p:commandLink styleClass="btnLupa"><i class="material-icons">search</i></p:commandLink>
+						        		        <p:commandLink styleClass="btnLupa"  ajax="true" update="groupInfo" 
+						        actionListener="#{principalBean.buscarServidor()}"><i class="material-icons">search</i>
+						        </p:commandLink>
 					        </h:panelGroup>
-					        
 						</div>
-						<div class="col-md-12 card">
-							<div class="col-md-12" style="padding-top: 0;">
-								<div class="col-md-1"><img src="../imagem/icones/pt.png" alt="img-partido" class="img-responsive" width="80px"/></div>
-								<div class="col-md-11">
-									<h2>PT</h2>
-									<p>Partido dos Trabalhadores</p>
+							
+						 <h:panelGroup  id="groupInfo" >
+						  <h:panelGroup  id="groupInfoPartido"  rendered="#{principalBean.blocoInformacaoPartido}" >
+								<div class="col-md-12 card">
+									<div class="col-md-12" style="padding-top: 0;">
+										<div class="col-md-1"><img src="../imagem/icones/pt.png" alt="img-partido" class="img-responsive" width="80px"/></div>
+										<div class="col-md-11">
+											<h2><p:outputLabel value="#{principalBean.partido.sigla}" /></h2>
+											<p><p:outputLabel value="#{principalBean.partido.nome}" /></p>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="col-md-1"><i class="material-icons">people</i></div>
+										<div class="col-md-2" style="padding-top: 10px;">Filiados</div>
+										<div class="col-md-2" style="padding-top: 10px;"><p:outputLabel value="#{principalBean.partido.quantFiliados}" /></div>
+										<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBar" widgetVar="pbClient" value="100"/></div>
+									</div>
+									<div class="col-md-12">
+										<div class="col-md-1"><i class="material-icons">attach_money</i></div>
+										<div class="col-md-2" style="padding-top: 10px;">Financeiro</div>
+										<div class="col-md-2" style="padding-top: 10px;"><p:outputLabel value="#{principalBean.partido.financeiro}" /></div>
+										<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBarClient" widgetVar="pbClient"/></div>
+									</div>
 								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="col-md-1"><i class="material-icons">people</i></div>
-								<div class="col-md-2" style="padding-top: 10px;">Filiados</div>
-								<div class="col-md-2" style="padding-top: 10px;">10.000</div>
-								<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBar" widgetVar="pbClient" value="100"/></div>
-							</div>
-							<div class="col-md-12">
-								<div class="col-md-1"><i class="material-icons">attach_money</i></div>
-								<div class="col-md-2" style="padding-top: 10px;">Financeiro</div>
-								<div class="col-md-2" style="padding-top: 10px;">50.000</div>
-								<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBarClient" widgetVar="pbClient"/></div>
-							</div>
-						</div>
-						
-						<div class="col-md-12 card servidor">
-							<div class="col-md-12">
-								<div class="col-md-10" style="padding: 0">
-									<h2><i class="material-icons">person</i><strong style="position: absolute; margin-top: 7px;"> SERVIDOR</strong></h2>
-									<p:outputLabel value="Fulaninho de sousa paz" styleClass="col-md-12"/>
-									<p:outputLabel value="015.253.744-94" styleClass="col-md-12"/>
+							</h:panelGroup>	
+							
+							
+							
+<!-- 							servidor -->
+							<h:panelGroup  id="groupInfoServidor"  rendered="#{principalBean.blocoInformacaoServidor}">
+								<div class="col-md-12 card servidor">
+									<div class="col-md-12">
+										<div class="col-md-10" style="padding: 0">
+											<h2><i class="material-icons">person</i><strong style="position: absolute; margin-top: 7px;"> SERVIDOR</strong></h2>
+											<p:outputLabel value="#{principalBean.servidor.nome}" styleClass="col-md-12"/>
+											<p:outputLabel value="#{principalBean.servidor.cpf}" styleClass="col-md-12"/>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="col-md-10" style="padding: 0">
+											<h2><i class="material-icons">business_center</i><strong style="position: absolute; margin-top: 7px;"> CARGO</strong></h2>
+											<p:outputLabel value="Professor Nivel I" styleClass="col-md-12"/>
+											<p:outputLabel value="#{principalBean.servidor.cpf}" styleClass="col-md-12"/>
+										</div>
+										<div class="col-md-2" style="padding: 0">
+											<h2><strong>REGIME</strong></h2>
+											<p:outputLabel value="CLT" styleClass="col-md-12"/>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<h2><i class="material-icons">business</i><strong style="position: absolute; margin-top: 7px;"> INSTITUICAO</strong></h2>
+										<p:outputLabel value="Prefeitura Municipal" styleClass="col-md-12"/>
+									</div>
+									<div class="col-md-12">
+										<h2><i class="material-icons">flag</i><strong style="position: absolute; margin-top: 7px;"> PARTIDO</strong></h2>
+										<p:outputLabel value="PT" styleClass="col-md-12"/>
+									</div>
 								</div>
-								<div class="col-md-2" style="padding: 0">
-									<h2><strong>SITUACAO</strong></h2>
-									<p:outputLabel value="Regular" styleClass="col-md-12"/>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="col-md-10" style="padding: 0">
-									<h2><i class="material-icons">business_center</i><strong style="position: absolute; margin-top: 7px;"> CARGO</strong></h2>
-									<p:outputLabel value="Professor Nivel I" styleClass="col-md-12"/>
-									<p:outputLabel value="1800.00" styleClass="col-md-12"/>
-								</div>
-								<div class="col-md-2" style="padding: 0">
-									<h2><strong>REGIME</strong></h2>
-									<p:outputLabel value="CLT" styleClass="col-md-12"/>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<h2><i class="material-icons">business</i><strong style="position: absolute; margin-top: 7px;"> INSTITUICAO</strong></h2>
-								<p:outputLabel value="Prefeitura Municipal" styleClass="col-md-12"/>
-							</div>
-							<div class="col-md-12">
-								<h2><i class="material-icons">flag</i><strong style="position: absolute; margin-top: 7px;"> PARTIDO</strong></h2>
-								<p:outputLabel value="PT" styleClass="col-md-12"/>
-							</div>
-						</div>
+							  </h:panelGroup>
+						  </h:panelGroup>	  	
 					</div>
+				  	
 				</h:form>
 			</div>
 		</section>
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+<!-- 		FOOTER -->
 		<section id="contato" class="contato">
 			<div class="rodape container">
 				<div class="col-md-12">
@@ -173,20 +207,20 @@
 				</div>
 				<div class="col-md-4 col-xs-12">
 					<hr class="hrCima"/>
-					<h3>Titulo 1</h3>
-					<p>informação 1</p>
+					<h3>Equipe</h3>
+					<p>Cabide Zero</p>
 					<hr class="hrBaixo"/>
 				</div>
 				<div class="col-md-4 col-xs-12">
 					<hr class="hrCima"/>
-					<h3>Titulo 2</h3>
-					<p>informação 2</p>
+					<h3>Telefone</h3>
+					<p>(83) 0 0000-0000</p>
 					<hr class="hrBaixo"/>
 				</div>
 				<div class="col-md-4 col-xs-12">
 					<hr class="hrCima"/>
-					<h3>Titulo 3</h3>
-					<p>informação 3</p>
+					<h3>E-mail</h3>
+					<p>cabidezero@gmail.com</p>
 					<hr class="hrBaixo"/>
 				</div>
 				<div class="col-md-12">
