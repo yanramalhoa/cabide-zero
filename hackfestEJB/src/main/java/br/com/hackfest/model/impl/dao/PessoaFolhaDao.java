@@ -40,55 +40,64 @@ public class PessoaFolhaDao extends GenericoDao<PessoaFolha> implements PessoaFo
 		
 		String sql =
 		"Select  " + 
-		"	pf.id_pessoa_folha, p.id_pessoa, p.cpf, p.nome as pessoa, ug.id_unidade_gestora, ug.nome unidade_gestora, c.id_cargo,c.nome cargo, tr.id_tipo_regime, tr.descricao tipo_regime, pf.vantagem " + 
-		"From pessoa_folha pf " + 
-		"Inner Join pessoa p on p.id_pessoa = pf.id_pessoa " + 
-		"Inner Join cargo c on c.id_cargo = pf.id_cargo " + 
-		"Inner Join unidade_gestora ug on ug.id_unidade_gestora = c.id_unidade_gestora " + 
-		"Inner Join tipo_regime tr on tr.id_tipo_regime = c.id_tipo_regime " + 
-		"Inner Join (Select p.id_pessoa, p.cpf " + 
-		"	    From pessoa_folha pf " + 
-		"	    Inner Join pessoa p on p.id_pessoa = pf.id_pessoa " + 
-		"	    Inner Join cargo c on c.id_cargo = pf.id_cargo " + 
-		"	    Inner Join tipo_regime tr on tr.id_tipo_regime = c.id_tipo_regime " + 
-		"	    Where pf.mes = 1 " + 
-		"	    and tr.descricao not in ('Inativos / Pensionistas', 'Benefício previdênciário temporário') " + 
-		"	    and c.nome not like '%PROF.%' " + 
-		"	    and c.nome not like '%PROFESSOR%' " + 
-		"	    and c.nome not like '%MEDICO%' " + 
-		"	    and c.nome not like '%ENFERM%' " + 
-		"	    and c.nome not like '%NUTRIC%' " + 
-		"	    and c.nome not like '%FONO%' " + 
-		"	    and c.nome not like '%FISIO%' " + 
-		"	    and c.nome not like '%ODONTO%' " + 
-		"	    and c.nome not like '%DENTIST%' " + 
-		"	    and c.nome not like '%FARMAC%' " + 
-		"	    Group By p.id_pessoa, p.cpf " + 
-		"	    Having count(p.id_pessoa)>1 " + 
-		") pn on pn.id_pessoa = pf.id_pessoa " + 
+		"	pf.id, p.id, p.cpf, p.nome as pessoa, ug.id, ug.nome, c.id,c.nome , tr.id, tr.descricao , pf.vantagem " + 
+		"From PessoaFolha pf " + 
+		"Inner Join pf.pessoa p " + 
+		"Inner Join pf.cargo c  " + 
+		"Inner Join c.unidadeGestora ug  " + 
+		"Inner Join c.tipoRegime tr  " + 
 		" " + 
-		"Where pf.mes =  " + mes + " " + 
-		"and   pf.ano =  " + ano + " " + 
+		"Where 1=1 " + 
 		"and exists (Select 1 "  +
-		"	    From filiacao_partidaria fp " +
-		"	    Where fp.id_pessoa = pf.id_pessoa) " +
+		"	    From FiliacaoPartidaria fp_2 " +
+		"	    Inner Join fp_2.pessoa p_2 " +
+		"	    Where p_2.id = p.id) " +
+		"and   pf.ano =  " + ano + " " + 
+		"and   pf.mes =  " + mes + " " + 
+		"and   p.id in (Select p_1.id " + 
+		"	    From PessoaFolha pf_1 " + 
+		"	    Inner Join pf_1.pessoa p_1  " + 
+		"	    Inner Join pf_1.cargo c_1  " + 
+		"	    Inner Join c_1.tipoRegime tr_1  " + 
+		"	    Where 1=1 " +
+		//"       and p_1.id = p.id " +
+		"		and exists (Select 1 "  +
+		"	    From FiliacaoPartidaria fp_3 " +
+		"	    Inner Join fp_3.pessoa p_3 " +
+		"	    Where p_3.id = p_1.id) " +
+		"       and pf_1.ano = " + ano + " " +
+		"       and pf_1.mes = " + mes + " " +
+		"	    and tr_1.descricao not in ('Inativos / Pensionistas', 'Benefício previdênciário temporário') " + 
+		"	    and c_1.nome not like '%PROF.%' " + 
+		"	    and c_1.nome not like '%PROFESSOR%' " + 
+		"	    and c_1.nome not like '%MEDICO%' " + 
+		"	    and c_1.nome not like '%ENFERM%' " + 
+		"	    and c_1.nome not like '%NUTRIC%' " + 
+		"	    and c_1.nome not like '%FONO%' " + 
+		"	    and c_1.nome not like '%FISIO%' " + 
+		"	    and c_1.nome not like '%ODONTO%' " + 
+		"	    and c_1.nome not like '%DENTIST%' " + 
+		"	    and c_1.nome not like '%FARMAC%' " + 
+		"	    Group By p_1.id, p_1.cpf " + 
+		"	    Having count(p_1.id)>1 " + 
+		")   " + 
 		"and not exists(Select 1 " + 
-		"		From pessoa_folha pf_1 " + 
-		"		Inner Join cargo c_1 on c_1.id_cargo = pf_1.id_cargo " + 
-		"		Where pf_1.id_pessoa = pf.id_pessoa " + 
+		"		From PessoaFolha pf_1 " + 
+		"		Inner Join pf_1.cargo c_1  " + 
+		"		Where pf_1.pessoa = pf.pessoa " + 
 		"		and c_1.nome like '%PROF.%' " + 
 		"		and c_1.nome like '%PROFESSOR%' " + 
-		"	        and c.nome not like '%MEDICO%' " + 
-		"	        and c.nome not like '%ENFERM%' " + 
-		"	        and c.nome not like '%ENFERM%' " + 
-		"	        and c.nome not like '%NUTRIC%' " + 
-		"	        and c.nome not like '%FONO%' " + 
-		"	        and c.nome not like '%FISIO%' " + 
-		"	        and c.nome not like '%ODONTO%' " + 
-		"	        and c.nome not like '%DENTIST%' " + 
-		"	        and c.nome not like '%FARMAC%' " + 
-		"	    ) " + 
-		"Order By pf.id_pessoa_folha, p.cpf " + 
+		"	        and c_1.nome not like '%MEDICO%' " + 
+		"	        and c_1.nome not like '%ENFERM%' " + 
+		"	        and c_1.nome not like '%ENFERM%' " + 
+		"	        and c_1.nome not like '%NUTRIC%' " + 
+		"	        and c_1.nome not like '%FONO%' " + 
+		"	        and c_1.nome not like '%FISIO%' " + 
+		"	        and c_1.nome not like '%ODONTO%' " + 
+		"	        and c_1.nome not like '%DENTIST%' " + 
+		"	        and c_1.nome not like '%FARMAC%' " + 
+		"	    ) " +
+		"Order By pf.id, p.cpf " + 
 		" ";
 
 		List<Object[]> rows =  this.consultarPorQueryRetornaListaObjetos(pessoaFolha, sql);
@@ -132,65 +141,79 @@ public class PessoaFolhaDao extends GenericoDao<PessoaFolha> implements PessoaFo
 
 	}
 	
+	@Override
 	public List<Pessoa> listaPessoasComVinculo(Integer mes, Integer ano) throws CabideException {
 		List<Pessoa> pessoas = new ArrayList<>();
 		String sql =
 		"Select  " + 
-		"	p.id_pessoa, p.cpf, p.nome as pessoa, sum(pf.vantagem) as total_vantagem, count(p.id_pessoa) total_por_pessoa " + 
-		"From pessoa_folha pf " + 
-		"Inner Join pessoa p on p.id_pessoa = pf.id_pessoa " + 
-		"Inner Join cargo c on c.id_cargo = pf.id_cargo " + 
-		"Inner Join unidade_gestora ug on ug.id_unidade_gestora = c.id_unidade_gestora " + 
-		"Inner Join tipo_regime tr on tr.id_tipo_regime = c.id_tipo_regime " + 
-		"Inner Join (Select p.id_pessoa, p.cpf " + 
-		"	    From pessoa_folha pf " + 
-		"	    Inner Join pessoa p on p.id_pessoa = pf.id_pessoa " + 
-		"	    Inner Join cargo c on c.id_cargo = pf.id_cargo " + 
-		"	    Inner Join tipo_regime tr on tr.id_tipo_regime = c.id_tipo_regime " + 
-		"	    Where pf.mes = 1 " + 
-		"	    and tr.descricao not in ('Inativos / Pensionistas', 'Benefício previdênciário temporário') " + 
-		"	    and c.nome not like '%PROF.%' " + 
-		"	    and c.nome not like '%PROFESSOR%' " + 
-		"	    and c.nome not like '%MEDICO%' " + 
-		"	    and c.nome not like '%ENFERM%' " + 
-		"	    and c.nome not like '%NUTRIC%' " + 
-		"	    and c.nome not like '%FONO%' " + 
-		"	    and c.nome not like '%FISIO%' " + 
-		"	    and c.nome not like '%ODONTO%' " + 
-		"	    and c.nome not like '%DENTIST%' " + 
-		"	    and c.nome not like '%FARMAC%' " + 
-		"	    Group By p.id_pessoa, p.cpf " + 
-		"	    Having count(p.id_pessoa)>1 " + 
-		") pn on pn.id_pessoa = pf.id_pessoa " + 
+		"	p.id, p.cpf, p.nome as pessoa, sum(pf.vantagem) as total_vantagem, count(p.id) as total_por_pessoa " + 
+		"From PessoaFolha pf " + 
+		"Inner Join pf.pessoa p " + 
+		"Inner Join pf.cargo c  " + 
+		"Inner Join c.unidadeGestora ug  " + 
+		"Inner Join c.tipoRegime tr  " + 
 		" " + 
-		"Where pf.mes =  " + mes + " " + 
-		"and   pf.ano =  " + ano + " " + 
+		"Where 1=1 " + 
 		"and exists (Select 1 "  +
-		"	    From filiacao_partidaria fp " +
-		"	    Where fp.id_pessoa = pf.id_pessoa) " +
+		"	    From FiliacaoPartidaria fp_2 " +
+		"	    Inner Join fp_2.pessoa p_2 " +
+		"	    Where p_2.id = p.id) " +
+		"and   pf.ano =  " + ano + " " + 
+		"and   pf.mes =  " + mes + " " + 
+		"and   p.id in (Select p_1.id " + 
+		"	    From PessoaFolha pf_1 " + 
+		"	    Inner Join pf_1.pessoa p_1  " + 
+		"	    Inner Join pf_1.cargo c_1  " + 
+		"	    Inner Join c_1.tipoRegime tr_1  " + 
+		"	    Where 1=1 " +
+		//"       and p_1.id = p.id " +
+		"		and exists (Select 1 "  +
+		"	    From FiliacaoPartidaria fp_3 " +
+		"	    Inner Join fp_3.pessoa p_3 " +
+		"	    Where p_3.id = p_1.id) " +
+		"       and pf_1.ano = " + ano + " " +
+		"       and pf_1.mes = " + mes + " " +
+		"	    and tr_1.descricao not in ('Inativos / Pensionistas', 'Benefício previdênciário temporário') " + 
+		"	    and c_1.nome not like '%PROF.%' " + 
+		"	    and c_1.nome not like '%PROFESSOR%' " + 
+		"	    and c_1.nome not like '%MEDICO%' " + 
+		"	    and c_1.nome not like '%ENFERM%' " + 
+		"	    and c_1.nome not like '%NUTRIC%' " + 
+		"	    and c_1.nome not like '%FONO%' " + 
+		"	    and c_1.nome not like '%FISIO%' " + 
+		"	    and c_1.nome not like '%ODONTO%' " + 
+		"	    and c_1.nome not like '%DENTIST%' " + 
+		"	    and c_1.nome not like '%FARMAC%' " + 
+		"	    Group By p_1.id, p_1.cpf " + 
+		"	    Having count(p_1.id)>1 " + 
+		")   " + 
 		"and not exists(Select 1 " + 
-		"		From pessoa_folha pf_1 " + 
-		"		Inner Join cargo c_1 on c_1.id_cargo = pf_1.id_cargo " + 
-		"		Where pf_1.id_pessoa = pf.id_pessoa " + 
+		"		From PessoaFolha pf_1 " + 
+		"		Inner Join pf_1.cargo c_1  " + 
+		"		Where pf_1.pessoa = pf.pessoa " + 
 		"		and c_1.nome like '%PROF.%' " + 
 		"		and c_1.nome like '%PROFESSOR%' " + 
-		"	        and c.nome not like '%MEDICO%' " + 
-		"	        and c.nome not like '%ENFERM%' " + 
-		"	        and c.nome not like '%ENFERM%' " + 
-		"	        and c.nome not like '%NUTRIC%' " + 
-		"	        and c.nome not like '%FONO%' " + 
-		"	        and c.nome not like '%FISIO%' " + 
-		"	        and c.nome not like '%ODONTO%' " + 
-		"	        and c.nome not like '%DENTIST%' " + 
-		"	        and c.nome not like '%FARMAC%' " + 
+		"	        and c_1.nome not like '%MEDICO%' " + 
+		"	        and c_1.nome not like '%ENFERM%' " + 
+		"	        and c_1.nome not like '%ENFERM%' " + 
+		"	        and c_1.nome not like '%NUTRIC%' " + 
+		"	        and c_1.nome not like '%FONO%' " + 
+		"	        and c_1.nome not like '%FISIO%' " + 
+		"	        and c_1.nome not like '%ODONTO%' " + 
+		"	        and c_1.nome not like '%DENTIST%' " + 
+		"	        and c_1.nome not like '%FARMAC%' " + 
 		"	    ) " +
-		"Group By p.id_pessoa, p.cpf, p.nome" +
+		"Group By p.id, p.cpf, p.nome " +
 		"Order By p.nome " + 
 		" ";
 
-		List<Object[]> rows =  this.consultarPorQueryRetornaListaObjetos(new PessoaFolha(), sql);
+		PessoaFolha pessoafOlha = new PessoaFolha();
+		pessoafOlha.setMes(mes);
+		pessoafOlha.setAno(ano);
 		
-		List<FiliacaoPartidaria> listaFP = filiacaoPartidariaBusiness.buscarTodos();
+		List<Object[]> rows =  this.consultarPorQueryRetornaListaObjetos(pessoafOlha, sql);
+		
+		List<FiliacaoPartidaria> listaFP = filiacaoPartidariaBusiness.listaFiliacaoPartidaria();
 
 		PessoaFolha pessoaFolha = new PessoaFolha();
 		pessoaFolha.setMes(mes);
@@ -200,13 +223,11 @@ public class PessoaFolhaDao extends GenericoDao<PessoaFolha> implements PessoaFo
 		
 		for(Object[] object : rows){
 			Pessoa p = new Pessoa();
-			p.setId((Long) object[1]); 
-			p.setCpf((String) object[2]); 
-			p.setNome((String) object[3]); 
-			p.setTotalVantagem((BigDecimal) object[4]); 
-			p.setQtdTotalPorPessoa((Integer) object[5]); 
-			
-			p.setListaFiliacaoPartidaria(new ArrayList<>());
+			p.setId((Long) object[0]); 
+			p.setCpf((String) object[1]); 
+			p.setNome((String) object[2]); 
+			p.setTotalVantagem((BigDecimal) object[3]); 
+			p.setQtdTotalPorPessoa((Long) object[4]); 
 			
 			if(listaFP!=null && listaFP.size()>0) {
 				for(FiliacaoPartidaria fp: listaFP) {
@@ -217,6 +238,7 @@ public class PessoaFolhaDao extends GenericoDao<PessoaFolha> implements PessoaFo
 			}
 			if(listaPessoaFolha!=null && listaPessoaFolha.size()>0) {
 				for(PessoaFolha pf: listaPessoaFolha) {
+					if(pf.getPessoa()!=null && pf.getPessoa().getId()!=null)
 					if(p.getId().equals(pf.getPessoa().getId())) {
 						p.getListaPessoaFolha().add(pf);
 					}

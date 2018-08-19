@@ -2,6 +2,7 @@ package br.com.hackfest.model.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -37,7 +38,7 @@ public class Pessoa implements Serializable{
 	private String nome;
 
 	@Transient
-	private Integer qtdTotalPorPessoa;
+	private Long qtdTotalPorPessoa;
 	
 	@Transient
 	private BigDecimal totalVantagem;
@@ -72,11 +73,11 @@ public class Pessoa implements Serializable{
 		this.nome = nome;
 	}
 
-	public Integer getQtdTotalPorPessoa() {
+	public Long getQtdTotalPorPessoa() {
 		return qtdTotalPorPessoa;
 	}
 
-	public void setQtdTotalPorPessoa(Integer qtdTotalPorPessoa) {
+	public void setQtdTotalPorPessoa(Long qtdTotalPorPessoa) {
 		this.qtdTotalPorPessoa = qtdTotalPorPessoa;
 	}
 
@@ -89,6 +90,9 @@ public class Pessoa implements Serializable{
 	}
 
 	public List<FiliacaoPartidaria> getListaFiliacaoPartidaria() {
+		if(listaFiliacaoPartidaria==null) {
+			listaFiliacaoPartidaria = new ArrayList<>();
+		}
 		return listaFiliacaoPartidaria;
 	}
 
@@ -97,6 +101,9 @@ public class Pessoa implements Serializable{
 	}
 
 	public List<PessoaFolha> getListaPessoaFolha() {
+		if(listaPessoaFolha==null) {
+			listaPessoaFolha = new ArrayList<>();
+		}
 		return listaPessoaFolha;
 	}
 

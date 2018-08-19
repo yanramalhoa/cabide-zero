@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import org.apache.commons.mail.EmailException;
 
 import br.com.hackfest.controller.exception.CabideException;
+import br.com.hackfest.model.entities.Pessoa;
 import br.com.hackfest.model.entities.PessoaFolha;
 import br.com.hackfest.model.interfaces.business.PessoaFolhaBusiness;
 import br.com.hackfest.model.interfaces.repository.PessoaFolhaRepository;
@@ -75,6 +76,12 @@ public class PessoaFolhaFacade implements PessoaFolhaBusiness{
 			String tipoOrdenacao, Map<String, Object> parametros, StringBuilder where) throws CabideException {
 		// TODO Auto-generated method stub
 		return pessoaFolhaRepository.loadPaginated(entidade, inicio, tamanho, campoOrdenacao, tipoOrdenacao, parametros, where);
+	}
+
+	@Override
+	public List<Pessoa> listaPessoasComVinculo(Integer mes, Integer ano) throws CabideException {
+		// TODO Auto-generated method stub
+		return pessoaFolhaRepository.listaPessoasComVinculo(mes, ano);
 	}
 	
 }

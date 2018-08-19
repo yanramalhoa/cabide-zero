@@ -76,5 +76,11 @@ public class FiliacaoPartidariaFacade implements FiliacaoPartidariaBusiness{
 		// TODO Auto-generated method stub
 		return filiacaoPartidariaRepository.loadPaginated(entidade, inicio, tamanho, campoOrdenacao, tipoOrdenacao, parametros, where);
 	}
+
+	@Override
+	public List<FiliacaoPartidaria> listaFiliacaoPartidaria() throws CabideException {
+		// TODO Auto-generated method stub
+		return filiacaoPartidariaRepository.listaFiliacaoPartidaria();
+	}
 	
 }
