@@ -1,8 +1,11 @@
 package br.com.hackfest.controller.managedbean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -10,6 +13,9 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.ChartSeries;
 
+import br.com.hackfest.controller.exception.CabideException;
+import br.com.hackfest.model.entities.Partido;
+import br.com.hackfest.model.interfaces.business.PartidoBusiness;
 import br.com.hackfest.pojo.ChartPojo;
 
 @ViewScoped
@@ -18,7 +24,16 @@ public class PrincipalBean implements Serializable {
 
 	private static final long serialVersionUID = -4117333534500404730L;
 
+	
+	@EJB
+	private PartidoBusiness partidoBusiness;
+	
+	
 	private ChartPojo chart;
+	
+	private List<Partido> listaPartidos;
+	
+	private Partido partido;
 	
 	private boolean tipoBuscarPartido; 
 	private boolean tipoBuscarServidor = true;
@@ -35,84 +50,27 @@ public class PrincipalBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		chart                = new ChartPojo();
-		ChartSeries partidos = new ChartSeries();		
-		partidos.setLabel("Partidos");
-		partidos.set("PT", 100);
-		partidos.set("PA", 150);
-		partidos.set("PB", 170);
-		partidos.set("PC", 180);
-		partidos.set("PD", 220);
-		partidos.set("PT", 100);
-		partidos.set("AA", 150);
-		partidos.set("CB", 170);
-		partidos.set("DC", 180);
-		partidos.set("ED", 220);
-		partidos.set("QPT", 100);
-		partidos.set("WA", 150);
-		partidos.set("EB", 170);
-		partidos.set("1C", 180);
-		partidos.set("2D", 220);
-		partidos.set("CPT", 100);
-		partidos.set("NA", 150);
-		partidos.set("MB", 170);
-		partidos.set("KC", 180);
-		partidos.set("LD", 220);
-		partidos.set("LPT", 100);
-		partidos.set("PA", 150);
-		partidos.set("OB", 170);
-		partidos.set("IC", 180);
-		partidos.set("UD", 220);
-		partidos.set("PT", 100);
-		partidos.set("UA", 150);
-		partidos.set("YB", 170);
-		partidos.set("RC", 180);
-		partidos.set("WD", 220);
-		partidos.set("PT", 100);
-		partidos.set("QA", 150);
-		partidos.set("QB", 170);
-		partidos.set("QC", 180);
-		partidos.set("QD", 220);
 		
+		if(listaPartidos == null) {
+			buscarPartidos();
+		}
+		ChartSeries empregado = new ChartSeries();
+		ChartSeries doisEmpregos = new ChartSeries();		
+		for(Partido p : listaPartidos) {
+			
+			//mudar isso
+			
+			p.setQuantServidoresEmpregados(1000);
+			p.setQuantiServidoresDoisEmpregos(500);
+			empregado.setLabel("Partidos");
+			empregado.set(p.getSigla(), p.getQuantServidoresEmpregados());
+			
+			doisEmpregos.setLabel("Partidos");
+			doisEmpregos.set(p.getSigla(), p.getQuantServidoresEmpregados());
+			
+		}
 		
-		ChartSeries partidos2 = new ChartSeries();		
-		partidos2.setLabel("Partidos");
-		partidos2.set("<strong>PT</strong>", 100);
-		partidos2.set("PA", 150);
-		partidos2.set("PB", 170);
-		partidos2.set("PC", 180);
-		partidos2.set("PD", 220);
-		partidos2.set("PT", 100);
-		partidos2.set("AA", 150);
-		partidos2.set("CB", 170);
-		partidos2.set("DC", 180);
-		partidos2.set("ED", 220);
-		partidos2.set("QPT", 100);
-		partidos2.set("WA", 150);
-		partidos2.set("EB", 170);
-		partidos2.set("1C", 180);
-		partidos2.set("2D", 220);
-		partidos2.set("CPT", 100);
-		partidos2.set("NA", 150);
-		partidos2.set("MB", 170);
-		partidos2.set("KC", 180);
-		partidos2.set("LD", 220);
-		partidos2.set("LPT", 100);
-		partidos2.set("PA", 150);
-		partidos2.set("OB", 170);
-		partidos2.set("IC", 180);
-		partidos2.set("UD", 220);
-		partidos2.set("PT", 100);
-		partidos2.set("UA", 150);
-		partidos2.set("YB", 170);
-		partidos2.set("RC", 180);
-		partidos2.set("WD", 220);
-		partidos2.set("PT", 100);
-		partidos2.set("QA", 150);
-		partidos2.set("QB", 170);
-		partidos2.set("QC", 180);
-		partidos2.set("QD", 220);
-		
-		chart = chart.CriarGrafico("BARRAS", partidos, partidos2);
+		chart = chart.CriarGrafico("BARRAS", empregado, doisEmpregos);
 		
 		chart.getBarChartModel().setAnimate(true);
 		
@@ -135,8 +93,39 @@ public class PrincipalBean implements Serializable {
 		}
 		ultimaEscolha = tipoBusca;
 	}
+	
+	public void buscarPartidos() {
+		Partido p = new Partido();
+		p.setAtivo(true);
+		
+		try {
+			listaPartidos = partidoBusiness.buscarPorExemplo(p);
+		} catch (CabideException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	public List<Partido> listPartidos()   {
+		if (listaPartidos == null) {
+			listaPartidos = new ArrayList<Partido>();
+			try {
+				listaPartidos = partidoBusiness.buscarTodos();
+			} catch (CabideException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return listaPartidos;
+	}
 
-	public boolean tipoBuscarPartido() {
+	
+	
+	
+	public boolean isTipoBuscarPartido() {
 		return tipoBuscarPartido;
 	}
 
@@ -151,5 +140,12 @@ public class PrincipalBean implements Serializable {
 	public void setTipoBuscarServidor(boolean tipoBuscarServidor) {
 		this.tipoBuscarServidor = tipoBuscarServidor;
 	}
-	
+
+	public Partido getPartido() {
+		return partido;
+	}
+
+	public void setPartido(Partido partido) {
+		this.partido = partido;
+	}
 }
