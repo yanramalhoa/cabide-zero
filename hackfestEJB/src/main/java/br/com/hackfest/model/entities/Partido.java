@@ -52,11 +52,11 @@ public class Partido extends EntidadeGenerica {
     @Transient
 	private Integer quantFiliados;
     
-    @Transient
-  	private Integer quantServidoresEmpregados;
+    @Column(name = "QTD_FILIADOS_REGULAR")
+  	private Integer qtd_filiados_regular;
     
-    @Transient
-  	private Integer quantiServidoresDoisEmpregos;
+    @Column(name = "QTD_FILIADOS_IRREGULAR")
+  	private Integer qtd_filiados_irregular;
     
     @Transient
   	private BigDecimal financeiro;
@@ -112,20 +112,20 @@ public class Partido extends EntidadeGenerica {
 		this.numero = numero;
 	}
 
-	public Integer getQuantServidoresEmpregados() {
-		return quantServidoresEmpregados;
+	public Integer getQtd_filiados_regular() {
+		return qtd_filiados_regular;
 	}
 
-	public void setQuantServidoresEmpregados(Integer quantServidoresEmpregados) {
-		this.quantServidoresEmpregados = quantServidoresEmpregados;
+	public void setQtd_filiados_regular(Integer qtd_filiados_regular) {
+		this.qtd_filiados_regular = qtd_filiados_regular;
 	}
 
-	public Integer getQuantiServidoresDoisEmpregos() {
-		return quantiServidoresDoisEmpregos;
+	public Integer getQtd_filiados_irregular() {
+		return qtd_filiados_irregular;
 	}
 
-	public void setQuantiServidoresDoisEmpregos(Integer quantiServidoresDoisEmpregos) {
-		this.quantiServidoresDoisEmpregos = quantiServidoresDoisEmpregos;
+	public void setQtd_filiados_irregular(Integer qtd_filiados_irregular) {
+		this.qtd_filiados_irregular = qtd_filiados_irregular;
 	}
 
 	public Integer getQuantFiliados() {

@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LegendPlacement;
 
 import br.com.hackfest.controller.exception.CabideException;
 import br.com.hackfest.model.entities.Partido;
@@ -97,15 +98,11 @@ public class PrincipalBean implements Serializable {
 		ChartSeries doisEmpregos = new ChartSeries();		
 		for(Partido p : listaPartidos) {
 			
-			//mudar isso
+			empregado.setLabel("Filiados em Orgãos Públicos");
+			empregado.set(p.getSigla(), p.getQtd_filiados_regular());
 			
-			p.setQuantServidoresEmpregados(1000);
-			p.setQuantiServidoresDoisEmpregos(500);
-			empregado.setLabel("Partidos");
-			empregado.set(p.getSigla(), p.getQuantServidoresEmpregados());
-			
-			doisEmpregos.setLabel("Partidos");
-			doisEmpregos.set(p.getSigla(), p.getQuantServidoresEmpregados());
+			doisEmpregos.setLabel("Filiados Irregulares em Orgãos Públicos");
+			doisEmpregos.set(p.getSigla(), p.getQtd_filiados_irregular());
 			
 		}
 		
@@ -120,7 +117,8 @@ public class PrincipalBean implements Serializable {
         yAxis.setLabel("Empregos");
         
         chart.getBarChartModel().setSeriesColors("36af0e, eaa228");
-        
+        chart.getBarChartModel().setLegendPosition("s");
+        chart.getBarChartModel().setLegendPlacement(LegendPlacement.OUTSIDEGRID);
         pieChart = new ChartPojo();
         
         pieChart = pieChart.CriarGrafico("TORTA", null, null);
