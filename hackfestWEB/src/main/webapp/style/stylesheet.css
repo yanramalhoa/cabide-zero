@@ -183,7 +183,7 @@ div.partidos{
 }
 
 .ui-selectonemenu{
-	padding-top: 12px;
+	padding: 18px;
 }
 
 .ui-selectonemenu .ui-selectonemenu-label{
@@ -221,7 +221,7 @@ div.partidos{
 
 .btnLupa i{
 	border: solid 1px #a8a8a8;
-	padding: 13px 20px;
+	padding: 19px;
 }
 
 .btnLupa i:hover,
@@ -338,3 +338,13 @@ div.card.servidor .material-icons{
 .excedeu .ui-progressbar-value{
 	background-color: #ff5c5c !important;
 } 
+
+.social{
+	padding-top: 25px; 
+	padding-bottom: 15px; 
+	font-size: 20px;
+}
+
+.social a{
+	padding: 15px;
+}

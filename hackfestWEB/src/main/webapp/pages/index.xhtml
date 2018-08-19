@@ -93,7 +93,7 @@
 								
 								<p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
 								 value="#{principalBean.mes}" 
-								 style="margin-left: 10px;">
+								 style="margin-left: 5px;">
 											<f:selectItem itemValue="1" itemLabel="Janeiro" />
 											<f:selectItem itemValue="2" itemLabel="Fevereiro" />
 											<f:selectItem itemValue="3" itemLabel="Março" />
@@ -109,7 +109,7 @@
 						        </p:selectOneMenu>
 						        
 						        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
-										 style="margin-left: 10px;"  value="#{principalBean.ano}">
+										 style="margin-left: 4px;"  value="#{principalBean.ano}">
 											<f:selectItem itemLabel="2017" itemValue="2017" />
 						        </p:selectOneMenu>
 						        
@@ -123,7 +123,7 @@
 						  <h:panelGroup  id="groupInfoPartido"  rendered="#{principalBean.blocoInformacaoPartido}" >
 								<div class="col-md-12 card">
 									<div class="col-md-12" style="padding-top: 0;">
-										<div class="col-md-1"><img src="../imagem/icones/pt.png" alt="img-partido" class="img-responsive" width="80px"/></div>
+										<div class="col-md-1"><img src="../imagem/icones/#{principalBean.partido.sigla.toLowerCase()}.png" alt="img-partido" class="img-responsive" width="80px"/></div>
 										<div class="col-md-11">
 											<h2><p:outputLabel value="#{principalBean.partido.sigla}" /></h2>
 											<p><p:outputLabel value="#{principalBean.partido.nome}" /></p>
@@ -133,13 +133,13 @@
 										<div class="col-md-1"><i class="material-icons">people</i></div>
 										<div class="col-md-2" style="padding-top: 10px;">Filiados</div>
 										<div class="col-md-2" style="padding-top: 10px;"><p:outputLabel value="#{principalBean.partido.quantFiliados}" /></div>
-										<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBar" widgetVar="pbClient" value="100"/></div>
+										<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBar" widgetVar="pbClient" value="100" /></div>
 									</div>
 									<div class="col-md-12">
 										<div class="col-md-1"><i class="material-icons">attach_money</i></div>
 										<div class="col-md-2" style="padding-top: 10px;">Financeiro</div>
 										<div class="col-md-2" style="padding-top: 10px;"><p:outputLabel value="#{principalBean.partido.financeiro}" /></div>
-										<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBarClient" widgetVar="pbClient"/></div>
+										<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBarClient" widgetVar="pbClient" value="85" styleClass=" #{100 > 80 ? 'excedeu' : ''}"/></div>
 									</div>
 								</div>
 							</h:panelGroup>	
@@ -225,6 +225,12 @@
 				</div>
 				<div class="col-md-12">
 					<a href="#" class="btn btn-success btn-lg" style="width: 35%; font-size: 20px;">Denuncie</a>
+				</div>
+				
+				<div class="col-md-12 social" >
+					<a href="#"><i class="fab fa-twitter"></i></a>
+					<a href="#"><i class="fab fa-instagram"></i></a>
+					<a href="#"><i class="fab fa-facebook-f"></i></a>	
 				</div>
 			</div>
 		</section>
