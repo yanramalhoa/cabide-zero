@@ -1,3 +1,8 @@
+*{
+	padding-top: 0;
+	padding-bottom: 0;
+	max-width: 100%;
+}
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -54,6 +59,9 @@ body{
 .mdc-toolbar{
 	background-color: rgba(33, 39, 57, 1);
 	padding: 15px;
+	position: sticky;
+    top: 0;
+    z-index: 3;
 }
 
 .mdc-toolbar__title{
@@ -61,6 +69,7 @@ body{
 	text-transform: uppercase;
 	letter-spacing: 0.2em;
 	font-size: 1em;
+	margin-top: 16px
 }
 
 a{
@@ -72,14 +81,21 @@ li{
 	font-size: 26px;
 }
 
+input{
+	background: none !important;
+	padding: 15px !important;
+}
+
 .ui-state-hover,
-.ui-state-focus{
+.ui-state-focus,
+.ui-inputfield,
+.ui-shadow{
 	box-shadow: none !important;
 	-webkit-box-shadow: none !important;
 }
 
 a:hover{
-	color: #ffa21a;
+	color: #5CFFA4;
 	text-decoration: none;
 }
 
@@ -90,7 +106,7 @@ section{
 
 hr{
  	width: 16%;
- 	border: solid 2px #ffa21a;
+ 	border: solid 2px #5CFFA4;
  	margin: 20px auto; 	
 }
 
@@ -100,10 +116,6 @@ hr{
 
 .layout{
 	width: 100%;
-}
-
-.layout-wrapper{
-	padding: 15px 0px;
 }
 
 .graficosPartidos h1{
@@ -119,7 +131,8 @@ hr{
 }
 
 
-.introducao{
+.introducao,
+.rodape{
 	width: 50%;
 	display: block;
 	margin: 0 auto;
@@ -140,7 +153,7 @@ hr{
 }
 
 .introducao p{
-	text-align: justify;
+	text-align: center;
 }
 
 .buscar .filtros{
@@ -152,41 +165,64 @@ hr{
 	background: transparent;
 	margin-right: 0;
 	padding: 15px;
-	font-size: 1.2em;
+	color: #000;
+	font-size: 1.6em;
 	width: 50%;
 	transition: all 0.1s ease-in;
+	box-shadow: 0 1px #999;
 }
 button.btnBuscar.ativo{
-	color: #fff;
-	background-color: #832566;
+	background-color: #5cffa4;
 	outline:none;
+	box-shadow: none;
+	transform: translateY(1px);
 }
 div.partidos{
 	width: 90%;
 }
-div.partidos .ui-selectonemenu-label{
+.ui-selectonemenu .ui-selectonemenu-label{
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	font-size: 2em !important;
 }
 
-div.partidos .ui-selectonemenu-trigger{
+.ui-selectonemenu .ui-selectonemenu-trigger{
 	width: 50px;
 	text-align:center;
 	background: transparent;
 	border: none;
 }
 
-div.partidos .ui-selectonemenu-trigger span{
+.ui-selectonemenu-panel .ui-state-highlight{
+	background: none !important;
+	color: #36af0e;
+	text-shadow: none;
+}
+
+.ui-selectonemenu-panel .ui-state-hover{
+	background: none !important;
+}
+
+
+.ui-selectonemenu .ui-selectonemenu-trigger span{
 	margin: 6px auto 0 20px;
 	margin-top: 20px !important;
 }
 
 .btnLupa{
-	background: none;
-	position: absolute;
-	margin: 6px 6px 6px -6px;
-	font-size: 1.8em;
+    display: block;
+    color: #000;
+}
+
+.btnLupa i{
+	border: solid 1px #a8a8a8;
+	padding: 13px 20px;
+}
+
+.btnLupa i:hover,
+.btnLupa:hover{
+	color: #5CFFA4;
+	border-color: #5CFFA4; 
 }
 
 .card{
@@ -211,6 +247,77 @@ div.partidos .ui-selectonemenu-trigger span{
 }
 
 .card div.col-md-12{
-	border-bottom: solid 1px #832566;
+	border-bottom: solid 1px #a8a8a8;
 	padding: 15px;
+}
+
+.contato{
+	background-color:rgba(33, 39, 57, 1);
+	text-align: center;
+	color: #fff;
+}
+
+.contato p{
+	font-size: 20px;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.rodape .col-md-4 hr{
+	width: 20%;
+ 	border: solid 1px #5CFFA4;
+ 	margin: 20px auto;
+}
+ 	
+.rodape .col-md-4 .hrBaixo{
+	opacity: 0;
+}
+
+.rodape .col-md-4:hover .hrCima{
+	display: none;
+}
+
+.rodape .col-md-4:hover .hrBaixo{
+	width: 100%;
+ 	border: solid 1px #5CFFA4;
+ 	margin: 20px auto;
+ 	animation-name: fadeInDown;
+ 	animation-duration: 1s;
+ 	animation-delay: 0.2s;
+ 	animation-fill-mode: both;
+ 	opacity: 1;
+}
+
+.filtrosGrafico{
+	width: 50%;
+	display: block;
+	margin: 0 auto;
+}
+
+ .ui-selectonemenu{
+	border: solid 1px #a7a4a4;
+}
+
+div.card.servidor .material-icons{
+	font-size: 40px;
+	margin-top: 2px;
+	
+}
+
+.servidor .ui-outputlabel{
+	font-weight: normal;
 }

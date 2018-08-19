@@ -5,24 +5,49 @@
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
 	<ui:define name="content">
-		<section class="graficosPartidos">
-			<h1>Empregos de servidores públicos<br/> ligados aos seguintes partidos</h1>
-			<p:chart type="bar" model="#{principalBean.chart.barChartModel}" style="height:380px" responsive="true"/>
+		<section id="inicio" class="graficosPartidos">
+			<h:form>
+				<div class="row">
+					<h1 class="col-md-12">Empregos de servidores públicos<br/> ligados aos seguintes partidos</h1>
+					<div class="col-md-12" style="padding-top: 15px; padding-bottom: 15px;">
+						<div class="filtrosGrafico">
+					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-4"
+										value="#{principalBean.partido}"
+										filter="true" style="margin-left:30.33333333%">
+										<f:selectItems value="#{principalBean.listPartidos()}"
+											var="c" itemLabel="#{c.sigla}" />
+					        </p:selectOneMenu>
+					        
+					        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2 col-md-offset-1"
+										value="">
+										<f:selectItem itemLabel="2017" itemValue="#{null}" />
+					        </p:selectOneMenu>
+				        </div>
+					</div>
+					<div class="col-md-12" style="padding: 15px 0px 15px 30px;">
+						<p:chart type="bar" model="#{principalBean.chart.barChartModel}" style="height:380px" responsive="true"/>
+					</div>
+				</div>
+			</h:form>
 		</section>
 		
 		<section class="objetivo">
 			<div class="introducao">
-				<h1><img alt="Logo" src="../imagem/cabide-zero.png" class="img-responsive" width="250px"/></h1>
-				<hr/>
-				<p>O projeto tem como objetivo filtrar e apresentar dados e inforomações extraidos do TCE/PB e TSE. Sobre as pessoas que possuem vínculo empregatício(Possível Cabide)
-				em instituições públicas.</p>
+				<h1><img alt="Logo" src="../imagem/cabidezero_LOGO.png" class="img-responsive" width="250px"/></h1>
+				<hr style="width: 25%"/>
+				<p>Esse serviço tem como objetivo filtrar e cruzar dados
+				   extraídos da folha de pagamento e dados dos filiados em partidos políticos  ambos retirados do TCE/PB, referentete aos 223 Municípios, bem como mostrar os dados quantitativos de contratações.</p>
 			</div>
 		</section>
 		
-		<section class="buscarInfo">
+		<section id="busca" class="buscarInfo">
 			<div class="buscar container">
 				<h:form id="form">
 					<div class="row">
+						<div class="col-md-12" style="color: #000">
+							<h1>Filtro</h1>
+							<hr/>
+						</div>
 						<div class="filtros col-md-12">
 							<p:commandButton id="tipoBuscarPartido" value="Partido" styleClass="btnBuscar #{principalBean.tipoBuscarPartido ? 'ativo' : ''}"  style="border-bottom-right-radius: 0; border-top-right-radius: 0;">
 								<p:ajax event="click" update="tipoBuscarServidor, tipoBuscarPartido, form" listener="#{principalBean.alterarBusca(1)}" />
@@ -45,7 +70,19 @@
 					        </h:panelGroup>
 					        
 					        <h:panelGroup id="inputServidor" rendered="#{principalBean.tipoBuscarServidor}">
-								<p:inputText placeholder="CPF" styleClass="col-md-11"/>
+								<p:inputText placeholder="CPF" styleClass="col-md-7"/>
+								
+								<p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
+											value="#{principalBean.partido}"
+											filter="true" style="margin-left: 10px; ">
+											<f:selectItems value="#{principalBean.listPartidos()}"
+												var="c" itemLabel="#{c.sigla}" />
+						        </p:selectOneMenu>
+						        
+						        <p:selectOneMenu styleClass="mdc-select__native-control col-md-2"
+											value="" style="margin-left: 10px;">
+											<f:selectItem itemLabel="2017" itemValue="#{null}" />
+						        </p:selectOneMenu>
 						        
 						        <p:commandLink styleClass="btnLupa"><i class="material-icons">search</i></p:commandLink>
 					        </h:panelGroup>
@@ -72,12 +109,45 @@
 								<div class="col-md-7" style="padding-top: 10px;"><p:progressBar id="progressBarClient" widgetVar="pbClient"/></div>
 							</div>
 						</div>
+						
+						<div class="col-md-12 card servidor">
+							<div class="col-md-12">
+								<div class="col-md-10" style="padding: 0">
+									<h2><i class="material-icons">person</i><strong style="position: absolute; margin-top: 7px;"> SERVIDOR</strong></h2>
+									<p:outputLabel value="Fulaninho de sousa paz" styleClass="col-md-12"/>
+									<p:outputLabel value="015.253.744-94" styleClass="col-md-12"/>
+								</div>
+								<div class="col-md-2" style="padding: 0">
+									<h2><strong>SITUACAO</strong></h2>
+									<p:outputLabel value="Regular" styleClass="col-md-12"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="col-md-10" style="padding: 0">
+									<h2><i class="material-icons">business_center</i><strong style="position: absolute; margin-top: 7px;"> CARGO</strong></h2>
+									<p:outputLabel value="Professor Nivel I" styleClass="col-md-12"/>
+									<p:outputLabel value="1800.00" styleClass="col-md-12"/>
+								</div>
+								<div class="col-md-2" style="padding: 0">
+									<h2><strong>REGIME</strong></h2>
+									<p:outputLabel value="CLT" styleClass="col-md-12"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<h2><i class="material-icons">business</i><strong style="position: absolute; margin-top: 7px;"> INSTITUICAO</strong></h2>
+								<p:outputLabel value="Prefeitura Municipal" styleClass="col-md-12"/>
+							</div>
+							<div class="col-md-12">
+								<h2><i class="material-icons">flag</i><strong style="position: absolute; margin-top: 7px;"> PARTIDO</strong></h2>
+								<p:outputLabel value="PT" styleClass="col-md-12"/>
+							</div>
+						</div>
 					</div>
 				</h:form>
 			</div>
 		</section>
 		
-		<section class="contato">
+		<section id="contato" class="contato">
 			<div class="rodape container">
 				<div class="col-md-12">
 					<h2>CONTATO</h2>
@@ -86,21 +156,26 @@
 					<br/>
 				</div>
 				<div class="col-md-4 col-xs-12">
-					<hr/>
+					<hr class="hrCima"/>
 					<h3>Titulo 1</h3>
 					<p>informação 1</p>
+					<hr class="hrBaixo"/>
 				</div>
 				<div class="col-md-4 col-xs-12">
-					<hr/>
+					<hr class="hrCima"/>
 					<h3>Titulo 2</h3>
 					<p>informação 2</p>
+					<hr class="hrBaixo"/>
 				</div>
 				<div class="col-md-4 col-xs-12">
-					<hr/>
+					<hr class="hrCima"/>
 					<h3>Titulo 3</h3>
 					<p>informação 3</p>
+					<hr class="hrBaixo"/>
 				</div>
-				
+				<div class="col-md-12">
+					<a href="#" class="btn btn-success btn-lg" style="width: 35%; font-size: 20px;">Denuncie</a>
+				</div>
 			</div>
 		</section>
 	</ui:define>

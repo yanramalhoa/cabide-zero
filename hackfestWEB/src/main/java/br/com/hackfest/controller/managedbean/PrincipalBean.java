@@ -30,6 +30,7 @@ public class PrincipalBean implements Serializable {
 	
 	
 	private ChartPojo chart;
+	private ChartPojo pieChart;
 	
 	private List<Partido> listaPartidos;
 	
@@ -79,6 +80,15 @@ public class PrincipalBean implements Serializable {
          
         Axis yAxis = chart.getBarChartModel().getAxis(AxisType.Y);
         yAxis.setLabel("Empregos");
+        
+        chart.getBarChartModel().setSeriesColors("36af0e, eaa228");
+        
+        pieChart = new ChartPojo();
+        
+        pieChart = pieChart.CriarGrafico("TORTA", null, null);
+        
+        pieChart.getPieChartModel().set("Financeiro", 50000);
+        pieChart.getPieChartModel().set("Filiados", 10000);
 	}
 	
 	public void alterarBusca(Integer tipoBusca) {
@@ -121,8 +131,6 @@ public class PrincipalBean implements Serializable {
 		}
 		return listaPartidos;
 	}
-
-	
 	
 	
 	public boolean isTipoBuscarPartido() {
