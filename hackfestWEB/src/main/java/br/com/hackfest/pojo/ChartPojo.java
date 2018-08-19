@@ -3,11 +3,13 @@ package br.com.hackfest.pojo;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.HorizontalBarChartModel;
+import org.primefaces.model.chart.PieChartModel;
 
 public class ChartPojo {
   
   private BarChartModel barChartModel;
   private HorizontalBarChartModel horizontalBarChartModel;
+  private PieChartModel pieChartModel;
   
   public BarChartModel getBarChartModel() {
 	return barChartModel;
@@ -33,6 +35,10 @@ public ChartPojo() {
 	if(horizontalBarChartModel == null) {
 		horizontalBarChartModel = new HorizontalBarChartModel();
 	}
+	
+	if(pieChartModel == null) {
+		pieChartModel = new PieChartModel();
+	}
   }
 
 public ChartPojo CriarGrafico(String tipoGrafico, ChartSeries info1, ChartSeries info2) {		
@@ -47,6 +53,16 @@ public ChartPojo CriarGrafico(String tipoGrafico, ChartSeries info1, ChartSeries
 	
 	return model;
 }
+
+public PieChartModel getPieChartModel() {
+	return pieChartModel;
+}
+
+public void setPieChartModel(PieChartModel pieChartModel) {
+	this.pieChartModel = pieChartModel;
+}
+
+
 }
 
 
