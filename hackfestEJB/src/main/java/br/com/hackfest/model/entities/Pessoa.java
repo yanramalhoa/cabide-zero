@@ -1,6 +1,8 @@
 package br.com.hackfest.model.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "pessoa")
@@ -33,6 +36,18 @@ public class Pessoa implements Serializable{
 	@Column(name = "NOME", nullable = false, length = 255)
 	private String nome;
 
+	@Transient
+	private Integer qtdTotalPorPessoa;
+	
+	@Transient
+	private BigDecimal totalVantagem;
+	
+	@Transient
+	private List<FiliacaoPartidaria> listaFiliacaoPartidaria;
+	
+	@Transient
+	private List<PessoaFolha> listaPessoaFolha;
+	
 	public Long getId() {
 		return id;
 	}
@@ -55,6 +70,38 @@ public class Pessoa implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Integer getQtdTotalPorPessoa() {
+		return qtdTotalPorPessoa;
+	}
+
+	public void setQtdTotalPorPessoa(Integer qtdTotalPorPessoa) {
+		this.qtdTotalPorPessoa = qtdTotalPorPessoa;
+	}
+
+	public BigDecimal getTotalVantagem() {
+		return totalVantagem;
+	}
+
+	public void setTotalVantagem(BigDecimal totalVantagem) {
+		this.totalVantagem = totalVantagem;
+	}
+
+	public List<FiliacaoPartidaria> getListaFiliacaoPartidaria() {
+		return listaFiliacaoPartidaria;
+	}
+
+	public void setListaFiliacaoPartidaria(List<FiliacaoPartidaria> listaFiliacaoPartidaria) {
+		this.listaFiliacaoPartidaria = listaFiliacaoPartidaria;
+	}
+
+	public List<PessoaFolha> getListaPessoaFolha() {
+		return listaPessoaFolha;
+	}
+
+	public void setListaPessoaFolha(List<PessoaFolha> listaPessoaFolha) {
+		this.listaPessoaFolha = listaPessoaFolha;
 	}
 
 }
